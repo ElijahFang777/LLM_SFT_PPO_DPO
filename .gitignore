@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+env/
+
+# Raw / processed data
+data/raw/
+data/processed/prefs_hh/hh_rlhf_explicit/
+data/processed/sft/daring_anteater_sft/
+
+# Model checkpoints and training artifacts
+checkpoints/
+*.safetensors
+*.bin
+optimizer.pt
+scheduler.pt
+rng_state.pth
+trainer_state.json
+training_args.bin
+
+# Caches / temp
+hf_cache/
+.cache/
+tmp/
+
+# Local outputs you may not want in Git
+outputs/eval_generations/*.jsonl
+outputs/pairwise_compare/answer_key*
+outputs/pairwise_compare/blind_eval*
+output.png
+
+# OS / editor
+.DS_Store
+.vscode/

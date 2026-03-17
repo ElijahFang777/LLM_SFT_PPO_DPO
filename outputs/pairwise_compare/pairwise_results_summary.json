@@ -1,0 +1,436 @@
+{
+  "blind_eval_csv": "/mnt/Data2/zfang/rlhf_assignment/outputs/pairwise_compare/blind_eval_filled.csv",
+  "answer_key_csv": "/mnt/Data2/zfang/rlhf_assignment/outputs/pairwise_compare/answer_key.csv",
+  "comparisons": {
+    "sft_vs_ppo": {
+      "total_pairs": 10,
+      "a_wins": 2,
+      "b_wins": 5,
+      "ties": 1,
+      "invalid": 2,
+      "valid_non_tie_pairs": 7,
+      "model_stats": {
+        "ppo_hh": {
+          "wins": 4,
+          "losses": 3,
+          "ties": 1,
+          "invalid": 2
+        },
+        "sft": {
+          "wins": 3,
+          "losses": 4,
+          "ties": 1,
+          "invalid": 2
+        }
+      },
+      "win_rates_valid_non_tie": {
+        "ppo_hh": 0.5714285714285714,
+        "sft": 0.42857142857142855
+      }
+    },
+    "sft_vs_dpo": {
+      "total_pairs": 10,
+      "a_wins": 1,
+      "b_wins": 5,
+      "ties": 2,
+      "invalid": 2,
+      "valid_non_tie_pairs": 6,
+      "model_stats": {
+        "sft": {
+          "wins": 6,
+          "losses": 0,
+          "ties": 2,
+          "invalid": 2
+        },
+        "dpo_hh": {
+          "wins": 0,
+          "losses": 6,
+          "ties": 2,
+          "invalid": 2
+        }
+      },
+      "win_rates_valid_non_tie": {
+        "sft": 1.0,
+        "dpo_hh": 0.0
+      }
+    },
+    "ppo_vs_dpo": {
+      "total_pairs": 10,
+      "a_wins": 4,
+      "b_wins": 2,
+      "ties": 1,
+      "invalid": 3,
+      "valid_non_tie_pairs": 6,
+      "model_stats": {
+        "ppo_hh": {
+          "wins": 6,
+          "losses": 0,
+          "ties": 1,
+          "invalid": 3
+        },
+        "dpo_hh": {
+          "wins": 0,
+          "losses": 6,
+          "ties": 1,
+          "invalid": 3
+        }
+      },
+      "win_rates_valid_non_tie": {
+        "ppo_hh": 1.0,
+        "dpo_hh": 0.0
+      }
+    }
+  },
+  "overall_model_stats": {
+    "ppo_hh": {
+      "wins": 10,
+      "losses": 3,
+      "ties": 2,
+      "invalid": 5
+    },
+    "sft": {
+      "wins": 9,
+      "losses": 4,
+      "ties": 3,
+      "invalid": 4
+    },
+    "dpo_hh": {
+      "wins": 0,
+      "losses": 12,
+      "ties": 3,
+      "invalid": 5
+    }
+  },
+  "decoded_rows": [
+    {
+      "pair_id": "1",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "7",
+      "winner_label": "tie",
+      "model_a": "ppo_hh",
+      "model_b": "sft",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "2",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "3",
+      "winner_label": "invalid",
+      "model_a": "sft",
+      "model_b": "ppo_hh",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "3",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "2",
+      "winner_label": "b",
+      "model_a": "sft",
+      "model_b": "ppo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "sft",
+      "notes": ""
+    },
+    {
+      "pair_id": "4",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "8",
+      "winner_label": "b",
+      "model_a": "sft",
+      "model_b": "ppo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "sft",
+      "notes": ""
+    },
+    {
+      "pair_id": "5",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "5",
+      "winner_label": "b",
+      "model_a": "ppo_hh",
+      "model_b": "sft",
+      "winner_model": "sft",
+      "loser_model": "ppo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "6",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "6",
+      "winner_label": "invalid",
+      "model_a": "ppo_hh",
+      "model_b": "sft",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "7",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "9",
+      "winner_label": "a",
+      "model_a": "ppo_hh",
+      "model_b": "sft",
+      "winner_model": "ppo_hh",
+      "loser_model": "sft",
+      "notes": ""
+    },
+    {
+      "pair_id": "8",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "4",
+      "winner_label": "b",
+      "model_a": "ppo_hh",
+      "model_b": "sft",
+      "winner_model": "sft",
+      "loser_model": "ppo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "9",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "0",
+      "winner_label": "a",
+      "model_a": "sft",
+      "model_b": "ppo_hh",
+      "winner_model": "sft",
+      "loser_model": "ppo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "10",
+      "comparison": "sft_vs_ppo",
+      "prompt_id": "1",
+      "winner_label": "b",
+      "model_a": "sft",
+      "model_b": "ppo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "sft",
+      "notes": ""
+    },
+    {
+      "pair_id": "11",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "1",
+      "winner_label": "b",
+      "model_a": "dpo_hh",
+      "model_b": "sft",
+      "winner_model": "sft",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "12",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "6",
+      "winner_label": "invalid",
+      "model_a": "sft",
+      "model_b": "dpo_hh",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "13",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "8",
+      "winner_label": "tie",
+      "model_a": "sft",
+      "model_b": "dpo_hh",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "14",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "9",
+      "winner_label": "a",
+      "model_a": "sft",
+      "model_b": "dpo_hh",
+      "winner_model": "sft",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "15",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "7",
+      "winner_label": "tie",
+      "model_a": "dpo_hh",
+      "model_b": "sft",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "16",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "3",
+      "winner_label": "invalid",
+      "model_a": "dpo_hh",
+      "model_b": "sft",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "17",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "5",
+      "winner_label": "b",
+      "model_a": "dpo_hh",
+      "model_b": "sft",
+      "winner_model": "sft",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "18",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "2",
+      "winner_label": "b",
+      "model_a": "dpo_hh",
+      "model_b": "sft",
+      "winner_model": "sft",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "19",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "0",
+      "winner_label": "b",
+      "model_a": "dpo_hh",
+      "model_b": "sft",
+      "winner_model": "sft",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "20",
+      "comparison": "sft_vs_dpo",
+      "prompt_id": "4",
+      "winner_label": "b",
+      "model_a": "dpo_hh",
+      "model_b": "sft",
+      "winner_model": "sft",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "21",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "8",
+      "winner_label": "b",
+      "model_a": "dpo_hh",
+      "model_b": "ppo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "22",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "0",
+      "winner_label": "a",
+      "model_a": "ppo_hh",
+      "model_b": "dpo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "23",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "3",
+      "winner_label": "invalid",
+      "model_a": "ppo_hh",
+      "model_b": "dpo_hh",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "24",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "2",
+      "winner_label": "a",
+      "model_a": "ppo_hh",
+      "model_b": "dpo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "25",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "7",
+      "winner_label": "tie",
+      "model_a": "ppo_hh",
+      "model_b": "dpo_hh",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "26",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "5",
+      "winner_label": "invalid",
+      "model_a": "ppo_hh",
+      "model_b": "dpo_hh",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    },
+    {
+      "pair_id": "27",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "9",
+      "winner_label": "a",
+      "model_a": "ppo_hh",
+      "model_b": "dpo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "28",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "4",
+      "winner_label": "a",
+      "model_a": "ppo_hh",
+      "model_b": "dpo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "29",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "1",
+      "winner_label": "b",
+      "model_a": "dpo_hh",
+      "model_b": "ppo_hh",
+      "winner_model": "ppo_hh",
+      "loser_model": "dpo_hh",
+      "notes": ""
+    },
+    {
+      "pair_id": "30",
+      "comparison": "ppo_vs_dpo",
+      "prompt_id": "6",
+      "winner_label": "invalid",
+      "model_a": "ppo_hh",
+      "model_b": "dpo_hh",
+      "winner_model": "",
+      "loser_model": "",
+      "notes": ""
+    }
+  ]
+}

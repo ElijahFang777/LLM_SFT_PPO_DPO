@@ -1,0 +1,12 @@
+{
+  "prompt_file": "/mnt/Data2/zfang/rlhf_assignment/outputs/eval_generations/eval_prompts.jsonl",
+  "outputs": {
+    "sft": "/mnt/Data2/zfang/rlhf_assignment/outputs/eval_generations/sft_outputs.jsonl",
+    "ppo_hh": "/mnt/Data2/zfang/rlhf_assignment/outputs/eval_generations/ppo_hh_outputs.jsonl",
+    "dpo_hh": "/mnt/Data2/zfang/rlhf_assignment/outputs/eval_generations/dpo_hh_outputs.jsonl"
+  },
+  "count_prompts": 10,
+  "max_input_length": 384,
+  "max_new_tokens": 128,
+  "deterministic_decoding": true
+}
