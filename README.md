@@ -1,4 +1,4 @@
-# RLHF Assignment
+# RLHF 
 
 # LLM_SFT_PPO_DPO
 
