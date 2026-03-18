@@ -36,6 +36,32 @@ RM_TRAIN_LIMIT = int(os.environ.get("RM_TRAIN_LIMIT", "0"))
 RM_VAL_LIMIT = int(os.environ.get("RM_VAL_LIMIT", "0"))
 
 
+def join_prompt_and_response(prompt: str, response: str) -> str:
+    """
+    Build a full dialogue text for reward modeling.
+
+    The processed HH dataset stores `prompt` (context turns) and `chosen/rejected`
+    (assistant completion only) separately. Reward training should score complete
+    prompt+assistant continuations, not the assistant completion in isolation.
+    """
+    prompt = str(prompt).strip()
+    response = str(response).strip()
+
+    if prompt.endswith("Assistant:"):
+        return f"{prompt} {response}".strip()
+    return f"{prompt}\n\nAssistant: {response}".strip()
+
+
+def format_reward_pair(example):
+    return {
+        "prompt": example["prompt"],
+        "chosen": join_prompt_and_response(example["prompt"], example["chosen"]),
+        "rejected": join_prompt_and_response(example["prompt"], example["rejected"]),
+    }
+
+
+
+
 def main() -> None:
     console.print(Panel.fit("Reward model training: HH-RLHF", style="bold cyan"))
 
@@ -52,6 +78,13 @@ def main() -> None:
         "validation": ds["validation"].select_columns(["prompt", "chosen", "rejected"]),
         "test": ds["test"].select_columns(["prompt", "chosen", "rejected"]),
     })
+
+    ds = DatasetDict({
+        "train": ds["train"].map(format_reward_pair, desc="Formatting train pairs for RM"),
+        "validation": ds["validation"].map(format_reward_pair, desc="Formatting validation pairs for RM"),
+        "test": ds["test"].map(format_reward_pair, desc="Formatting test pairs for RM"),
+    })
+
 
     if RM_TRAIN_LIMIT > 0:
         ds["train"] = ds["train"].select(range(min(RM_TRAIN_LIMIT, len(ds["train"]))))
