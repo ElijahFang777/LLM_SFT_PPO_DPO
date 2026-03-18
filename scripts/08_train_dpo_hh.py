@@ -94,6 +94,13 @@ def main() -> None:
         trust_remote_code=True,
         use_fast=True,
     )
+
+    # Keep DPO tokenization aligned with SFT training for Qwen chat templates.
+    # In SFT we explicitly use <|im_end|> as EOS, so DPO should do the same.
+    im_end_id = tokenizer.convert_tokens_to_ids("<|im_end|>")
+    if im_end_id is not None and im_end_id >= 0:
+        tokenizer.eos_token = "<|im_end|>"
+
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
