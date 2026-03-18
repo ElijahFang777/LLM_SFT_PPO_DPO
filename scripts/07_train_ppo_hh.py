@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import os
 from pathlib import Path
-from typing import Dict
+from typing import Dict, List
 
 import torch
 from accelerate import PartialState
@@ -116,15 +116,31 @@ def load_seqcls_model(model_path: Path, trainable: bool):
 
 
 def prepare_prompt_dataset(ds, tokenizer, max_prompt_length: int):
+
+    def render_prompt_messages(prompt_messages: List[Dict[str, str]]) -> str:
+        # Preferred path for chat models (Qwen, etc.)
+        if hasattr(tokenizer, "apply_chat_template") and tokenizer.chat_template is not None:
+            return tokenizer.apply_chat_template(
+                prompt_messages,
+                tokenize=False,
+                add_generation_prompt=True,
+            )
+
+        # Fallback if chat template is unavailable
+        parts = [f"{m['role']}: {m['content']}" for m in prompt_messages]
+        parts.append("assistant:")
+        return "\n\n".join(parts)
+
     def tokenize(example: Dict[str, str]):
+        prompt_text = render_prompt_messages(example["prompt_messages"])
         input_ids = tokenizer(
-            example["prompt"],
+            prompt_text,
             truncation=True,
             max_length=max_prompt_length,
             padding=False,
-            add_special_tokens=True,
+            add_special_tokens=False,
         )["input_ids"]
-        return {"input_ids": input_ids, "lengths": len(input_ids)}
+        return {"input_ids": input_ids, "lengths": len(input_ids), "prompt_text": prompt_text}
 
     out = ds.map(
         tokenize,
@@ -168,8 +184,8 @@ def main() -> None:
     console.print("\n[bold]Loading processed HH dataset...[/bold]")
     ds = load_from_disk(str(DATA_PATH))
     ds = DatasetDict({
-        "train": ds["train"].select_columns(["prompt"]),
-        "validation": ds["validation"].select_columns(["prompt"]),
+       "train": ds["train"].select_columns(["prompt_messages"]),
+        "validation": ds["validation"].select_columns(["prompt_messages"]),
     })
 
     if PPO_TRAIN_LIMIT > 0:
@@ -277,22 +293,7 @@ def main() -> None:
     console.print(Panel.fit("Starting PPO-HH training", style="bold green"))
     
 
-    # train_result = trainer.train()
 
-    # console.print(Panel.fit("Saving final PPO checkpoint", style="bold yellow"))
-    # final_dir = OUTPUT_DIR / "final"
-    # final_dir.mkdir(parents=True, exist_ok=True)
-
-    # trainer.save_model(str(final_dir))
-    # tokenizer.save_pretrained(str(final_dir))
-
-    # train_metrics = dict(train_result.metrics)
-    # train_metrics["train_prompts"] = len(train_dataset)
-    # train_metrics["eval_prompts"] = len(eval_dataset)
-    # train_metrics["ppo_total_episodes"] = total_episodes
-
-    # with open(final_dir / "train_metrics.json", "w", encoding="utf-8") as f:
-    #     json.dump(train_metrics, f, indent=2)
     
 
     train_result = trainer.train()
