@@ -25,7 +25,7 @@ BASE_MODEL_PATH = PROJECT_ROOT / "data" / "raw" / "models" / "Qwen2.5-1.5B"
 SFT_PATH = PROJECT_ROOT / "checkpoints" / "sft" / "qwen25_15b_lora_sft" / "final"
 DATA_PATH = PROJECT_ROOT / "data" / "processed" / "prefs_hh" / "hh_rlhf_explicit"
 # OUTPUT_DIR = PROJECT_ROOT / "checkpoints" / "dpo_hh" / "qwen25_15b_dpo_hh" # somke test
-OUTPUT_DIR = PROJECT_ROOT / "checkpoints" / "dpo_hh" / "qwen25_15b_dpo_hh_full" 
+OUTPUT_DIR = PROJECT_ROOT / "checkpoints" / "dpo_hh" / "qwen25_15b_dpo_hh_full_after_debug" # full training after debugging
 LOG_DIR = PROJECT_ROOT / "logs" / "dpo_hh"
 
 SEED = 42
@@ -110,13 +110,6 @@ def main() -> None:
     console.print("\n[bold]Loading processed HH preference dataset...[/bold]")
    
     #dataset-boundary problem
-    # ds = load_from_disk(str(DATA_PATH))
-    # ds = DatasetDict({
-    #     "train": ds["train"].select_columns(["prompt", "chosen", "rejected"]),
-    #     "validation": ds["validation"].select_columns(["prompt", "chosen", "rejected"]),
-    #     "test": ds["test"].select_columns(["prompt", "chosen", "rejected"]),
-    # })
-
     ds = load_from_disk(str(DATA_PATH))
     def to_conversational(split):
         split = split.select_columns(["prompt_messages", "chosen_messages", "rejected_messages"])
@@ -145,37 +138,6 @@ def main() -> None:
     console.print("[bold]Loading frozen reference model from same SFT checkpoint...[/bold]")
     ref_model = freeze_model(load_causal_model(SFT_PATH, trainable=False))
 
-    # dpo_config = DPOConfig(
-    #     output_dir=str(OUTPUT_DIR),
-    #     max_length=MAX_LENGTH,
-    #     truncation_mode="keep_start",
-    #     per_device_train_batch_size=4,
-    #     per_device_eval_batch_size=4,
-    #     gradient_accumulation_steps=4,
-    #     learning_rate=5e-6,
-    #     num_train_epochs=1,
-    #     lr_scheduler_type="cosine",
-    #     warmup_ratio=0.03,
-    #     logging_steps=25,
-    #     save_steps=1000,
-    #     eval_steps=1000,
-    #     eval_strategy="steps",
-    #     save_strategy="steps",
-    #     save_total_limit=2,
-    #     bf16=True,
-    #     fp16=False,
-    #     gradient_checkpointing=False,
-    #     max_grad_norm=1.0,
-    #     weight_decay=0.0,
-    #     report_to="none",
-    #     seed=SEED,
-    #     dataloader_num_workers=8,
-    #     remove_unused_columns=True,
-    #     disable_dropout=True,
-    #     beta=0.1,
-    #     precompute_ref_log_probs=True,
-    #     precompute_ref_batch_size=8,
-    # )
 
     dpo_config = DPOConfig(
     output_dir=str(OUTPUT_DIR),
@@ -204,7 +166,7 @@ def main() -> None:
     weight_decay=0.0,
     report_to="none",
     seed=SEED,
-    dataloader_num_workers=4,        # was 8
+    dataloader_num_workers=8,        # was 8
     remove_unused_columns=True,
     disable_dropout=True,
 

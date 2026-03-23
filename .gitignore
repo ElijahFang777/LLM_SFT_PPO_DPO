@@ -27,8 +27,8 @@ tmp/
 
 # Local outputs you may not want in Git
 outputs/eval_generations/*.jsonl
-outputs/pairwise_compare/answer_key*
-outputs/pairwise_compare/blind_eval*
+# outputs/pairwise_compare/answer_key*
+# outputs/pairwise_compare/blind_eval*
 output.png
 
 # OS / editor

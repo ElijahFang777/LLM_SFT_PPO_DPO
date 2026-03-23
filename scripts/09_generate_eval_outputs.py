@@ -25,7 +25,7 @@ BASE_MODEL_PATH = PROJECT_ROOT / "data" / "raw" / "models" / "Qwen2.5-1.5B"
 
 SFT_PATH = PROJECT_ROOT / "checkpoints" / "sft" / "qwen25_15b_lora_sft" / "final"
 PPO_PATH = PROJECT_ROOT / "checkpoints" / "ppo_hh" / "qwen25_15b_ppo_hh_full" / "final"
-DPO_PATH = PROJECT_ROOT / "checkpoints" / "dpo_hh" / "qwen25_15b_dpo_hh_full" / "final"
+DPO_PATH = PROJECT_ROOT / "checkpoints" / "dpo_hh" / "qwen25_15b_dpo_hh_full_after_debug" / "final"
 
 DATA_PATH = PROJECT_ROOT / "data" / "processed" / "prefs_hh" / "hh_rlhf_explicit"
 OUTPUT_DIR = PROJECT_ROOT / "outputs" / "eval_generations"

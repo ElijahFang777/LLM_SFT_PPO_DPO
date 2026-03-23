@@ -24,7 +24,7 @@ MODEL_REGISTRY: Dict[str, Path] = {
     "BASE": BASE_MODEL_PATH,
     "SFT": PROJECT_ROOT / "checkpoints" / "sft" / "qwen25_15b_lora_sft" / "final",
     "PPO": PROJECT_ROOT / "checkpoints" / "ppo_hh" / "qwen25_15b_ppo_hh_full" / "final",
-    "DPO": PROJECT_ROOT / "checkpoints" / "dpo_hh" / "qwen25_15b_dpo_hh_full" / "final",
+    "DPO": PROJECT_ROOT / "checkpoints" / "dpo_hh" / "qwen25_15b_dpo_hh_full_after_debug" / "final",
 }
 
 CONFIG_PATH = PROJECT_ROOT / "configs" / "talk2_config.json"

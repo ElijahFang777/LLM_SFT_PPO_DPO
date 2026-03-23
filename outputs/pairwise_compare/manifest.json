@@ -1,7 +1,7 @@
 {
   "seed": 42,
-  "common_prompt_ids": 10,
-  "pairwise_limit_per_comparison": 10,
+  "common_prompt_ids": 20,
+  "pairwise_limit_per_comparison": 0,
   "skip_identical_responses": false,
   "public_files": {
     "jsonl": "/mnt/Data2/zfang/rlhf_assignment/outputs/pairwise_compare/blind_eval.jsonl",
@@ -12,11 +12,11 @@
     "csv": "/mnt/Data2/zfang/rlhf_assignment/outputs/pairwise_compare/answer_key.csv"
   },
   "stats": {
-    "sft_vs_ppo_kept": 10,
+    "sft_vs_ppo_kept": 20,
     "sft_vs_ppo_identical": 2,
-    "sft_vs_dpo_kept": 10,
+    "sft_vs_dpo_kept": 20,
     "sft_vs_dpo_identical": 2,
-    "ppo_vs_dpo_kept": 10,
-    "ppo_vs_dpo_identical": 1
+    "ppo_vs_dpo_kept": 20,
+    "ppo_vs_dpo_identical": 2
   }
 }
